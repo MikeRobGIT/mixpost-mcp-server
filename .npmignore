@@ -1,0 +1,35 @@
+# Source files (only distribute compiled)
+src/
+tsconfig.json
+
+# Development files
+.git/
+.gitignore
+*.log
+npm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+test/
+*.test.ts
+*.spec.ts
+
+# Documentation source
+docs/
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts not needed
+*.tsbuildinfo
+*.map
