@@ -1,0 +1,76 @@
+---
+description: Core development patterns and architecture for the Mixpost MCP Server
+globs: src/**/*.ts,*.json,package.json
+---
+
+# Mixpost MCP Server Development Guide
+
+## Package Manager & Runtime
+
+- **Always use Bun** for all package management and execution
+- Use `bun install` instead of `npm install`
+- Use `bun run <script>` instead of `npm run <script>`
+- Bun can execute TypeScript directly: `bun run src/index.ts`
+
+## Project Architecture
+
+This is an MCP (Model Context Protocol) server that bridges Claude and the Mixpost social media management API.
+
+### Core Files Structure
+
+- [index.ts](mdc:src/index.ts): Entry point, MCP server setup, tool registration, request routing
+- [client.ts](mdc:src/client.ts): Axios-based HTTP client, API endpoints, Bearer token auth
+- [types.ts](mdc:src/types.ts): TypeScript interfaces, API error types, pagination structures  
+- [tools.ts](mdc:src/tools.ts): MCP tool definitions, schemas, parameter documentation
+
+## Environment Configuration
+
+Required environment variables:
+
+- `MIXPOST_BASE_URL`: Mixpost instance URL
+- `MIXPOST_WORKSPACE_UUID`: Workspace identifier
+- `MIXPOST_API_KEY`: Bearer token for authentication
+- `MIXPOST_CORE_PATH`: Optional, defaults to "mixpost"
+
+## Critical Implementation Patterns
+
+### Account ID Handling
+
+⚠️ **CRITICAL**: Despite parameter names like `accountUuid`, account IDs are **integers, not UUIDs**
+
+- Use numeric IDs in `accounts` arrays and `account_id` fields
+- Call `mixpost_list_accounts` to get correct numeric IDs
+
+### Post Creation Structure
+
+```typescript
+{
+  "account_id": 1,  // Must be integer
+  "is_original": true,
+  "content": {
+    "body": "Post content",
+    "media": [],
+    "urls": []
+  }
+}
+```
+
+### Content Formatting
+
+- Use HTML tags for formatting (e.g., `<div>` for line breaks)
+- Post content should be properly structured with HTML
+
+### Validation Requirements
+
+- Date format: YYYY-MM-DD
+- Time format: HH:MM
+- UUID validation using `validateUuid()` method
+- Required fields presence validation
+- Array types validation for accounts and versions
+
+### Error Handling
+
+- Custom `ApiError` type with status, message, and errors fields
+- Response interceptor catches 4xx/5xx errors
+- Network timeouts configured at 30 seconds
+

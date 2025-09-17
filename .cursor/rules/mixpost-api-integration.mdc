@@ -1,0 +1,93 @@
+---
+description: Mixpost API integration patterns and quirks
+globs: src/**/*.ts
+---
+
+# Mixpost API Integration Patterns
+
+## Authentication
+
+- Bearer token authentication via `MIXPOST_API_KEY` environment variable
+- Token passed in Authorization header: `Bearer ${apiKey}`
+- Workspace context via `MIXPOST_WORKSPACE_UUID`
+
+## API Base Configuration
+
+- Base URL: `MIXPOST_BASE_URL` environment variable
+- Core path: `MIXPOST_CORE_PATH` (defaults to "mixpost")
+- Full API URL: `${baseUrl}/${corePath}/api`
+
+## Critical API Quirks
+
+### Account ID Handling
+
+⚠️ **MAJOR QUIRK**: Account IDs are integers, not UUIDs despite parameter names
+
+```typescript
+// ❌ WRONG - Don't use UUIDs for account IDs
+const accountId = "123e4567-e89b-12d3-a456-426614174000";
+
+// ✅ CORRECT - Use integer IDs
+const accountId = 1;
+```
+
+### Post Version Structure
+
+Posts require a `versions` array with account-specific content:
+
+```typescript
+const postData = {
+  versions: [
+    {
+      account_id: 1,  // Integer, not UUID
+      is_original: true,
+      content: {
+        body: "Post content with <div>HTML formatting</div>",
+        media: [],
+        urls: []
+      }
+    }
+  ]
+};
+```
+
+### Content Formatting
+
+- Use HTML tags for formatting
+- `<div>` for line breaks
+- Proper HTML structure required
+
+## Common API Patterns
+
+### List Operations
+
+Most list endpoints support pagination:
+
+- `page`: Page number (default: 1)
+- `per_page`: Items per page (default: 15)
+
+### Date/Time Formats
+
+- Dates: YYYY-MM-DD format
+- Times: HH:MM format (24-hour)
+- Always validate format before API calls
+
+### Error Handling
+
+API errors return structured responses:
+
+```typescript
+interface ApiError {
+  status: number;
+  message: string;
+  errors?: Record<string, string[]>;
+}
+```
+
+## Development Workflow
+
+1. Use `mixpost_list_accounts` to get correct numeric account IDs
+2. Validate all input parameters before API calls
+3. Handle API errors gracefully with proper error messages
+4. Use HTML formatting for post content
+

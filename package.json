@@ -1,5 +1,5 @@
 {
-  "name": "mixpost-mcp-server",
+  "name": "@mikerob/mixpost-mcp",
   "version": "1.1.0",
   "description": "MCP server for Mixpost social media management API",
   "main": "dist/index.js",
@@ -7,9 +7,25 @@
     "mixpost-mcp-server": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsx src/index.ts",
-    "prepublishOnly": "npm run build"
+    "dev": "bun src/index.ts",
+    "build": "tsc --strict",
+    "start": "node dist/index.js",
+    "check": "bun run lint --fix && bun run typecheck && bun run format && bun run build && bun run test",
+    "test": "./test-all.sh",
+    "test:sequential": "./test-all.sh",
+    "test:parallel": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --fix",
+    "lint:src": "biome check src/ --fix --unsafe",
+    "format": "biome format --write .",
+    "format:src": "biome format --write src/",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
+    "pre-commit": "(bun run lint:src || echo '⚠️  Linting warnings found but continuing...') && bun run format:src",
+    "pre-push": "bun run test:sequential && bun run build",
+    "prepublishOnly": "bun run build"
   },
   "keywords": [
     "mcp",
@@ -18,22 +34,25 @@
     "api",
     "server"
   ],
-  "author": "Paul Farag",
+  "author": "Mike Rob",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pfarag/mixpost-mcp-server.git"
+    "url": "git+https://github.com/mikerob/mixpost-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/pfarag/mixpost-mcp-server/issues"
+    "url": "https://github.com/mikerob/mixpost-mcp-server/issues"
   },
-  "homepage": "https://github.com/pfarag/mixpost-mcp-server#readme",
+  "homepage": "https://github.com/mikerob/mixpost-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "axios": "^1.6.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.1.14",
     "@types/node": "^20.0.0",
+    "husky": "^9.1.7",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },

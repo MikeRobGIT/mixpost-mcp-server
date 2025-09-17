@@ -1,0 +1,78 @@
+---
+description: MCP server development patterns and best practices
+globs: src/**/*.ts
+---
+
+# MCP Server Development Patterns
+
+## MCP (Model Context Protocol) Architecture
+
+This server implements the MCP protocol to provide tools for Claude to interact with the Mixpost API.
+
+## Tool Registration Pattern
+
+Tools are defined in [tools.ts](mdc:src/tools.ts) and registered in [index.ts](mdc:src/index.ts):
+
+```typescript
+// Tool definition with schema
+const toolSchema = {
+  name: "tool_name",
+  description: "Tool description",
+  inputSchema: {
+    type: "object",
+    properties: { /* parameters */ }
+  }
+};
+
+// Registration in index.ts
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [toolSchema]
+}));
+```
+
+## Request Validation Pattern
+
+All incoming requests should be validated before processing:
+
+- UUID validation using `validateUuid()` method
+- Date format validation (YYYY-MM-DD)
+- Time format validation (HH:MM)
+- Required fields presence
+- Array type validation
+
+## Error Handling Pattern
+
+```typescript
+try {
+  const result = await client.someMethod(params);
+  return { content: [{ type: "text", text: JSON.stringify(result) }] };
+} catch (error) {
+  if (error instanceof ApiError) {
+    return { content: [{ type: "text", text: `Error: ${error.message}` }] };
+  }
+  throw error;
+}
+```
+
+## Client Integration Pattern
+
+- All API calls go through [client.ts](mdc:src/client.ts)
+- Bearer token authentication handled automatically
+- Axios interceptors for error handling
+- 30-second timeout configuration
+
+## Response Format
+
+MCP tools should return responses in this format:
+
+```typescript
+{
+  content: [
+    {
+      type: "text",
+      text: JSON.stringify(result)
+    }
+  ]
+}
+```
+

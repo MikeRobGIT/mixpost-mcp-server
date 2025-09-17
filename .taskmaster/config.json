@@ -1,0 +1,61 @@
+{
+  "models": {
+    "main": {
+      "provider": "claude-code",
+      "modelId": "opus",
+      "maxTokens": 32000,
+      "temperature": 0.2
+    },
+    "research": {
+      "provider": "claude-code",
+      "modelId": "opus",
+      "maxTokens": 32000,
+      "temperature": 0.1
+    },
+    "fallback": {
+      "provider": "claude-code",
+      "modelId": "sonnet",
+      "maxTokens": 64000,
+      "temperature": 0.2
+    }
+  },
+  "global": {
+    "logLevel": "info",
+    "debug": false,
+    "defaultNumTasks": 10,
+    "defaultSubtasks": 5,
+    "defaultPriority": "medium",
+    "projectName": "Taskmaster",
+    "ollamaBaseURL": "http://localhost:11434/api",
+    "bedrockBaseURL": "https://bedrock.us-east-1.amazonaws.com",
+    "responseLanguage": "English",
+    "enableCodebaseAnalysis": true,
+    "defaultTag": "master",
+    "azureOpenaiBaseURL": "https://your-endpoint.openai.azure.com/",
+    "userId": "1234567890"
+  },
+  "claudeCode": {
+    "permissionMode": "bypassPermissions",
+    "mcpServers": {
+      "sequential-thinking": {
+        "command": "bunx",
+        "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+      },
+      "context7": {
+        "command": "bunx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      },
+      "deepwiki": {
+        "command": "npx",
+        "args": ["-y", "mcp-deepwiki@latest"]
+      },
+      "perplexity-ask": {
+        "command": "npx",
+        "args": ["-y", "server-perplexity-ask"],
+        "env": {
+          "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
+        }
+      }
+    }
+  }
+}

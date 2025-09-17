@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Mixpost",
+    "prepublishOnly",
+    "Bun",
+    "tsx",
+    "prepublish",
+    "mixpost",
+    "uuid",
+    "uuids",
+    "workspace",
+    "axios",
+    "interceptors",
+    "biome",
+    "Biomejs",
+    "ECONNABORTED",
+    "ECONNREFUSED"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "coverage/**",
+    ".git/**",
+    "*.log",
+    "*.min.js",
+    ".env*"
+  ]
+}

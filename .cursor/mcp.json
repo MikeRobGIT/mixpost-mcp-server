@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "task-master-ai": {
+      "command": "npx",
+      "args": ["-y", "--package=task-master-ai", "task-master-ai"],
+      "env": {
+        "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
+        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
+        "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
+        "GOOGLE_API_KEY": "YOUR_GOOGLE_KEY_HERE",
+        "XAI_API_KEY": "YOUR_XAI_KEY_HERE",
+        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_KEY_HERE",
+        "MISTRAL_API_KEY": "YOUR_MISTRAL_KEY_HERE",
+        "AZURE_OPENAI_API_KEY": "YOUR_AZURE_KEY_HERE",
+        "OLLAMA_API_KEY": "YOUR_OLLAMA_API_KEY_HERE"
+      }
+    },
+    "mixpost": {
+      "type": "stdio",
+      "command": "bun",
+      "args": ["run", "dev"],
+      "env": {
+        "MIXPOST_BASE_URL": "https://post.vacancyvibe.com",
+        "MIXPOST_WORKSPACE_UUID": "5c4e8688-28ad-42a3-8dae-11d6fd996d5d",
+        "MIXPOST_API_KEY": "jkGSpPF9vCy0mkqYIoKfISEHySdrvzZ8pacWG4Rb11502e65",
+        "MIXPOST_CORE_PATH": "mixpost"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+description: High-level project overview and quick reference
+---
+
+# Mixpost MCP Server - Project Overview
+
+## Quick Reference
+
+This is a **Model Context Protocol (MCP) server** that provides Claude with tools to interact with the Mixpost social media management API.
+
+### Key Technologies
+
+- **Runtime**: Bun (not npm/yarn)
+- **Language**: TypeScript
+- **Protocol**: MCP (Model Context Protocol)
+- **API Client**: Axios with Bearer token authentication
+
+### Core Files
+
+- [index.ts](mdc:src/index.ts): MCP server entry point and tool registration
+- [client.ts](mdc:src/client.ts): Mixpost API client with Axios
+- [types.ts](mdc:src/types.ts): TypeScript interfaces and type definitions
+- [tools.ts](mdc:src/tools.ts): MCP tool schemas and definitions
+
+### Critical Quirks
+
+⚠️ **Account IDs are integers, not UUIDs** despite parameter names like `accountUuid`
+
+### Development Commands
+
+- Install: `bun install`
+- Build: `bun run build`
+- Dev: `bun run dev`
+- Direct run: `bun run src/index.ts`
+
+### Environment Variables
+
+- `MIXPOST_BASE_URL`: Mixpost instance URL
+- `MIXPOST_WORKSPACE_UUID`: Workspace identifier  
+- `MIXPOST_API_KEY`: Bearer token
+- `MIXPOST_CORE_PATH`: Optional, defaults to "mixpost"
+
+## Related Rules
+
+- [mixpost-mcp-server.mdc](mdc:.cursor/rules/mixpost-mcp-server.mdc): Core development patterns
+- [bun-workflow.mdc](mdc:.cursor/rules/bun-workflow.mdc): Bun-specific commands
+- [mcp-server-patterns.mdc](mdc:.cursor/rules/mcp-server-patterns.mdc): MCP protocol patterns
+- [mixpost-api-integration.mdc](mdc:.cursor/rules/mixpost-api-integration.mdc): API integration quirks
+- [typescript-patterns.mdc](mdc:.cursor/rules/typescript-patterns.mdc): TypeScript best practices
+

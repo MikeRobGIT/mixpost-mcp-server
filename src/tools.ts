@@ -1,4 +1,4 @@
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Tool } from '@modelcontextprotocol/sdk/types.js'
 
 export const MIXPOST_TOOLS: Tool[] = [
   // Account tools
@@ -8,8 +8,8 @@ export const MIXPOST_TOOLS: Tool[] = [
     inputSchema: {
       type: 'object',
       properties: {},
-      required: []
-    }
+      required: [],
+    },
   },
   {
     name: 'mixpost_get_account',
@@ -19,11 +19,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         accountUuid: {
           type: 'string',
-          description: 'The UUID of the account to retrieve'
-        }
+          description: 'The UUID of the account to retrieve',
+        },
       },
-      required: ['accountUuid']
-    }
+      required: ['accountUuid'],
+    },
   },
 
   // Post tools
@@ -35,37 +35,37 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         date: {
           type: 'string',
-          description: 'Post date in YYYY-MM-DD format'
+          description: 'Post date in YYYY-MM-DD format',
         },
         time: {
           type: 'string',
-          description: 'Post time in HH:MM format'
+          description: 'Post time in HH:MM format',
         },
         timezone: {
           type: 'string',
-          description: 'Timezone for the post (e.g., "America/New_York")'
+          description: 'Timezone for the post (e.g., "America/New_York")',
         },
         schedule: {
           type: 'boolean',
-          description: 'Whether to schedule the post for the specified date/time'
+          description: 'Whether to schedule the post for the specified date/time',
         },
         schedule_now: {
           type: 'boolean',
-          description: 'Whether to schedule the post immediately'
+          description: 'Whether to schedule the post immediately',
         },
         queue: {
           type: 'boolean',
-          description: 'Whether to add the post to the queue'
+          description: 'Whether to add the post to the queue',
         },
         accounts: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Array of account UUIDs to post to'
+          description: 'Array of account UUIDs to post to',
         },
         tags: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Array of tag UUIDs to associate with the post'
+          description: 'Array of tag UUIDs to associate with the post',
         },
         versions: {
           type: 'array',
@@ -79,18 +79,18 @@ export const MIXPOST_TOOLS: Tool[] = [
                 properties: {
                   body: { type: 'string' },
                   media: { type: 'array' },
-                  urls: { type: 'array', items: { type: 'string' } }
-                }
+                  urls: { type: 'array', items: { type: 'string' } },
+                },
               },
-              options: { type: 'object' }
+              options: { type: 'object' },
             },
-            required: ['account_id', 'is_original', 'content']
+            required: ['account_id', 'is_original', 'content'],
           },
-          description: 'Array of post versions for different accounts'
-        }
+          description: 'Array of post versions for different accounts',
+        },
       },
-      required: ['date', 'time', 'timezone', 'accounts', 'versions']
-    }
+      required: ['date', 'time', 'timezone', 'accounts', 'versions'],
+    },
   },
   {
     name: 'mixpost_update_post',
@@ -100,29 +100,29 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to update'
+          description: 'The UUID of the post to update',
         },
         date: {
           type: 'string',
-          description: 'Post date in YYYY-MM-DD format'
+          description: 'Post date in YYYY-MM-DD format',
         },
         time: {
           type: 'string',
-          description: 'Post time in HH:MM format'
+          description: 'Post time in HH:MM format',
         },
         timezone: {
           type: 'string',
-          description: 'Timezone for the post'
+          description: 'Timezone for the post',
         },
         accounts: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Array of account UUIDs to post to'
+          description: 'Array of account UUIDs to post to',
         },
         tags: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Array of tag UUIDs to associate with the post'
+          description: 'Array of tag UUIDs to associate with the post',
         },
         versions: {
           type: 'array',
@@ -136,18 +136,18 @@ export const MIXPOST_TOOLS: Tool[] = [
                 properties: {
                   body: { type: 'string' },
                   media: { type: 'array' },
-                  urls: { type: 'array', items: { type: 'string' } }
-                }
+                  urls: { type: 'array', items: { type: 'string' } },
+                },
               },
-              options: { type: 'object' }
+              options: { type: 'object' },
             },
-            required: ['account_id', 'is_original', 'content']
+            required: ['account_id', 'is_original', 'content'],
           },
-          description: 'Array of post versions for different accounts'
-        }
+          description: 'Array of post versions for different accounts',
+        },
       },
-      required: ['postUuid', 'date', 'time', 'timezone', 'accounts', 'versions']
-    }
+      required: ['postUuid', 'date', 'time', 'timezone', 'accounts', 'versions'],
+    },
   },
   {
     name: 'mixpost_approve_post',
@@ -157,11 +157,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to approve'
-        }
+          description: 'The UUID of the post to approve',
+        },
       },
-      required: ['postUuid']
-    }
+      required: ['postUuid'],
+    },
   },
   {
     name: 'mixpost_get_post',
@@ -171,11 +171,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to retrieve'
-        }
+          description: 'The UUID of the post to retrieve',
+        },
       },
-      required: ['postUuid']
-    }
+      required: ['postUuid'],
+    },
   },
   {
     name: 'mixpost_list_posts',
@@ -185,19 +185,19 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         page: {
           type: 'number',
-          description: 'Page number for pagination'
+          description: 'Page number for pagination',
         },
         limit: {
           type: 'number',
-          description: 'Number of posts per page'
+          description: 'Number of posts per page',
         },
         status: {
           type: 'string',
-          description: 'Filter by post status'
-        }
+          description: 'Filter by post status',
+        },
       },
-      required: []
-    }
+      required: [],
+    },
   },
   {
     name: 'mixpost_delete_post',
@@ -207,11 +207,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to delete'
-        }
+          description: 'The UUID of the post to delete',
+        },
       },
-      required: ['postUuid']
-    }
+      required: ['postUuid'],
+    },
   },
   {
     name: 'mixpost_delete_multiple_posts',
@@ -222,11 +222,11 @@ export const MIXPOST_TOOLS: Tool[] = [
         postUuids: {
           type: 'array',
           items: { type: 'string' },
-          description: 'Array of post UUIDs to delete'
-        }
+          description: 'Array of post UUIDs to delete',
+        },
       },
-      required: ['postUuids']
-    }
+      required: ['postUuids'],
+    },
   },
   {
     name: 'mixpost_schedule_post',
@@ -236,11 +236,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to schedule'
-        }
+          description: 'The UUID of the post to schedule',
+        },
       },
-      required: ['postUuid']
-    }
+      required: ['postUuid'],
+    },
   },
   {
     name: 'mixpost_add_post_to_queue',
@@ -250,11 +250,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         postUuid: {
           type: 'string',
-          description: 'The UUID of the post to add to queue'
-        }
+          description: 'The UUID of the post to add to queue',
+        },
       },
-      required: ['postUuid']
-    }
+      required: ['postUuid'],
+    },
   },
 
   // Media tools
@@ -266,19 +266,19 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         page: {
           type: 'number',
-          description: 'Page number for pagination'
+          description: 'Page number for pagination',
         },
         limit: {
           type: 'number',
-          description: 'Number of media files per page'
+          description: 'Number of media files per page',
         },
         type: {
           type: 'string',
-          description: 'Filter by media type (image, video, etc.)'
-        }
+          description: 'Filter by media type (image, video, etc.)',
+        },
       },
-      required: []
-    }
+      required: [],
+    },
   },
   {
     name: 'mixpost_get_media',
@@ -288,11 +288,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         mediaUuid: {
           type: 'string',
-          description: 'The UUID of the media file to retrieve'
-        }
+          description: 'The UUID of the media file to retrieve',
+        },
       },
-      required: ['mediaUuid']
-    }
+      required: ['mediaUuid'],
+    },
   },
   {
     name: 'mixpost_update_media',
@@ -302,19 +302,19 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         mediaUuid: {
           type: 'string',
-          description: 'The UUID of the media file to update'
+          description: 'The UUID of the media file to update',
         },
         name: {
           type: 'string',
-          description: 'New name for the media file'
+          description: 'New name for the media file',
         },
         alt_text: {
           type: 'string',
-          description: 'Alt text for accessibility'
-        }
+          description: 'Alt text for accessibility',
+        },
       },
-      required: ['mediaUuid']
-    }
+      required: ['mediaUuid'],
+    },
   },
   {
     name: 'mixpost_delete_media',
@@ -324,11 +324,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         mediaUuid: {
           type: 'string',
-          description: 'The UUID of the media file to delete'
-        }
+          description: 'The UUID of the media file to delete',
+        },
       },
-      required: ['mediaUuid']
-    }
+      required: ['mediaUuid'],
+    },
   },
 
   // Tag tools
@@ -338,8 +338,8 @@ export const MIXPOST_TOOLS: Tool[] = [
     inputSchema: {
       type: 'object',
       properties: {},
-      required: []
-    }
+      required: [],
+    },
   },
   {
     name: 'mixpost_get_tag',
@@ -349,11 +349,11 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         tagUuid: {
           type: 'string',
-          description: 'The UUID of the tag to retrieve'
-        }
+          description: 'The UUID of the tag to retrieve',
+        },
       },
-      required: ['tagUuid']
-    }
+      required: ['tagUuid'],
+    },
   },
   {
     name: 'mixpost_create_tag',
@@ -363,15 +363,15 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         name: {
           type: 'string',
-          description: 'The name of the tag'
+          description: 'The name of the tag',
         },
         hex_color: {
           type: 'string',
-          description: 'Hex color code for the tag (e.g., "#FF0000")'
-        }
+          description: 'Hex color code for the tag (e.g., "#FF0000")',
+        },
       },
-      required: ['name']
-    }
+      required: ['name'],
+    },
   },
   {
     name: 'mixpost_update_tag',
@@ -381,19 +381,19 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         tagUuid: {
           type: 'string',
-          description: 'The UUID of the tag to update'
+          description: 'The UUID of the tag to update',
         },
         name: {
           type: 'string',
-          description: 'The new name of the tag'
+          description: 'The new name of the tag',
         },
         hex_color: {
           type: 'string',
-          description: 'New hex color code for the tag'
-        }
+          description: 'New hex color code for the tag',
+        },
       },
-      required: ['tagUuid']
-    }
+      required: ['tagUuid'],
+    },
   },
   {
     name: 'mixpost_delete_tag',
@@ -403,10 +403,10 @@ export const MIXPOST_TOOLS: Tool[] = [
       properties: {
         tagUuid: {
           type: 'string',
-          description: 'The UUID of the tag to delete'
-        }
+          description: 'The UUID of the tag to delete',
+        },
       },
-      required: ['tagUuid']
-    }
-  }
-];
+      required: ['tagUuid'],
+    },
+  },
+]

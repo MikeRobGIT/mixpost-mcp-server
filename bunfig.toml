@@ -1,0 +1,3 @@
+# Test configuration
+[test]
+# preload = ["./tests/setup.ts"]

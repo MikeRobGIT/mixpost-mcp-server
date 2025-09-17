@@ -1,0 +1,40 @@
+---
+description: Bun-specific development workflow and commands
+globs: package.json,*.lock,*.json
+---
+
+# Bun Development Workflow
+
+## Package Management
+
+- **Primary package manager**: Bun (not npm/yarn)
+- Install dependencies: `bun install`
+- Add packages: `bun add <package>`
+- Remove packages: `bun remove <package>`
+- Update packages: `bun update`
+
+## Script Execution
+
+- Build: `bun run build` (TypeScript compilation to dist/)
+- Development: `bun run dev` (runs TypeScript with tsx)
+- Direct execution: `bun run src/index.ts` (Bun executes TypeScript natively)
+- Prepublish: `bun run prepublishOnly`
+
+## TypeScript Support
+
+- Bun has native TypeScript support - no compilation needed for development
+- Use `bun run src/index.ts` for direct TypeScript execution
+- Build step still required for production distribution
+
+## Lock Files
+
+- Primary lock file: [bun.lockb](mdc:bun.lockb) (binary format)
+- [package-lock.json](mdc:package-lock.json) may exist but should not be used
+- Always commit bun.lockb, ignore package-lock.json if present
+
+## Performance Benefits
+
+- Faster package installation than npm
+- Native TypeScript execution
+- Built-in bundling and testing capabilities
+
