@@ -29,6 +29,10 @@ dev-debug.log
 *.sw?
 # OS specific
 
+# MCP Configuration (contains API keys)
+.mcp.json
+.cursor/mcp.json
+
 # Task files
 # tasks.json
 # tasks/ 

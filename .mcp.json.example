@@ -8,7 +8,7 @@
       "command": "bunx",
       "args": ["-y", "@mikerob/lodgify-mcp@latest"],
       "env": {
-        "LODGIFY_API_KEY": "IEQu3kVTqdQzh+6M/9viXcjgh5tUWD9OTrYwCUGO9WlJX+BzWh5QU0X2y5bK0h3M"
+        "LODGIFY_API_KEY": "YOUR_LODGIFY_API_KEY_HERE"
       }
     },
     "taskmaster-ai": {
@@ -20,9 +20,9 @@
       "command": "bun",
       "args": ["run", "dev"],
       "env": {
-        "MIXPOST_BASE_URL": "https://post.vacancyvibe.com",
-        "MIXPOST_WORKSPACE_UUID": "5c4e8688-28ad-42a3-8dae-11d6fd996d5d",
-        "MIXPOST_API_KEY": "jkGSpPF9vCy0mkqYIoKfISEHySdrvzZ8pacWG4Rb11502e65",
+        "MIXPOST_BASE_URL": "https://your-mixpost-instance.com",
+        "MIXPOST_WORKSPACE_UUID": "your-workspace-uuid-here",
+        "MIXPOST_API_KEY": "your-mixpost-api-key-here",
         "MIXPOST_CORE_PATH": "mixpost"
       }
     }
